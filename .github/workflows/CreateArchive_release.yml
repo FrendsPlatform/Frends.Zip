@@ -5,6 +5,10 @@ on:
     paths:
       - 'Frends.Zip.CreateArchive/**'
 
+defaults:
+  run:
+    working-directory: './Frends.Zip.CreateArchive'
+
 jobs:
   build:
     uses: FrendsPlatform/FrendsTasks/.github/workflows/release.yml@main
