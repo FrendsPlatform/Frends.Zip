@@ -10,13 +10,13 @@ on:
     paths:
       - 'Frends.Zip.CreateArchive/**'
   
+defaults:
+  run:
+    working-directory: './Frends.Zip.CreateArchive'
 
 jobs:
   build:
     uses: FrendsPlatform/FrendsTasks/.github/workflows/build_main.yml@main
-    defaults:
-      run:
-        working-directory: './Frends.Zip.CreateArchive'
     secrets:
       badge_service_api_key: ${{ secrets.BADGE_SERVICE_API_KEY }}
       
