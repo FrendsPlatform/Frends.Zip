@@ -1,0 +1,22 @@
+name: build_and_test_on_main.yml
+
+on:
+  push:
+    branches:    
+      - main
+    paths:
+      - 'Frends.Zip.CreateArchive/**'
+  workflow_dispatch:
+    paths:
+      - 'Frends.Zip.CreateArchive/**'
+  
+
+jobs:
+  build:
+    uses: FrendsPlatform/FrendsTasks/.github/workflows/build_main.yml@main
+    defaults:
+      run:
+        working-directory: './Frends.Zip.CreateArchive'
+    secrets:
+      badge_service_api_key: ${{ secrets.BADGE_SERVICE_API_KEY }}
+      
