@@ -2,8 +2,6 @@
 ![MyGet](https://img.shields.io/myget/frends-tasks/v/Frends.Zip.CreateArchive)
 ![Coverage](https://app-github-custom-badges.azurewebsites.net/Badge?key=FrendsPlatform/Frends.Zip|main)
 
-test
-
 # Changelog
 
 | Version | Changes                                             |

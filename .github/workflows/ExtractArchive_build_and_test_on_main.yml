@@ -5,10 +5,10 @@ on:
     branches:    
       - main
     paths:
-      - 'Frends.Zip.CreateArchive/**'
+      - 'Frends.Zip.ExtractArchive/**'
   workflow_dispatch:
     paths:
-      - 'Frends.Zip.CreateArchive/**'
+      - 'Frends.Zip.ExtractArchive/**'
 
 jobs:
   build:

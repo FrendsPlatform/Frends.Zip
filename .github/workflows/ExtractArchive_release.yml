@@ -3,7 +3,7 @@ name: release.yml
 on:
   workflow_dispatch:
     paths:
-      - 'Frends.Zip.CreateArchive/**'
+      - 'Frends.Zip.ExtractArchive/**'
 
 jobs:
   build:
