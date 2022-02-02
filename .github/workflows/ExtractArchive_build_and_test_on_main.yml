@@ -5,16 +5,16 @@ on:
     branches:    
       - main
     paths:
-      - 'Frends.Zip.CreateArchive/**'
+      - 'Frends.Zip.ExtractArchive/**'
   workflow_dispatch:
     paths:
-      - 'Frends.Zip.CreateArchive/**'
+      - 'Frends.Zip.ExtractArchive/**'
 
 jobs:
   build:
     uses: FrendsPlatform/FrendsTasks/.github/workflows/build_main.yml@main
     with:
-      workdir: Frends.Zip.CreateArchive
+      workdir: Frends.Zip.ExtractArchive
     secrets:
       badge_service_api_key: ${{ secrets.BADGE_SERVICE_API_KEY }}
       
