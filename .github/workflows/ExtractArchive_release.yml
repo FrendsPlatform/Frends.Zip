@@ -9,7 +9,7 @@ jobs:
   build:
     uses: FrendsPlatform/FrendsTasks/.github/workflows/release.yml@main
     with:
-      workdir: './Frends.Zip.ExtractArchive'
+      workdir: Frends.Zip.ExtractArchive
     secrets:
       feed_api_key: ${{ secrets.TASKS_FEED_API_KEY }}
       
