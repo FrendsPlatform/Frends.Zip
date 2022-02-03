@@ -1,4 +1,4 @@
-name: release.yml
+name: ExtractArchive_release
 
 on:
   workflow_dispatch:
