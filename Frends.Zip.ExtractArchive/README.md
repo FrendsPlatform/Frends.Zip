@@ -1,6 +1,6 @@
 [![Build](https://github.com/FrendsPlatform/Frends.Zip/actions/workflows/ExtractArchive_build_and_test_on_main.yml/badge.svg)](https://github.com/FrendsPlatform/Frends.Zip/actions)
 ![MyGet](https://img.shields.io/myget/frends-tasks/v/Frends.Zip.ExtractArchive)
-![Coverage](https://app-github-custom-badges.azurewebsites.net/Badge?key=FrendsPlatform/Frends.Zip|main)
+![Coverage](https://app-github-custom-badges.azurewebsites.net/Badge?key=FrendsPlatform/Frends.Zip/Frends.Zip.ExtractArchive|main)
 
 # Change Log
 
