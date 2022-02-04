@@ -6,7 +6,7 @@ using System.Linq;
 using Ionic.Zip;
 using System.Collections.Generic;
 
-namespace Frends
+namespace Frends.Zip.CreateArchive.Tests
 {
     [TestFixture]
     public class ZipTests
