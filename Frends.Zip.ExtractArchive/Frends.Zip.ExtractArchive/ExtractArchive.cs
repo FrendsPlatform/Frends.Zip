@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 #pragma warning disable 1591
 
-namespace Frends
+namespace Frends.Zip.ExtractArchive
 {
     public class Zip
     {

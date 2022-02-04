@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 
-namespace Frends
+namespace Frends.Zip.ExtractArchive.Tests
 {
     [TestFixture]
     public class UnZipTests

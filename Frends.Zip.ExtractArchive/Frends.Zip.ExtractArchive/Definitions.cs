@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 #pragma warning disable CS1591
 
-namespace Frends
+namespace Frends.Zip.ExtractArchive
 {
     public enum UnzipFileExistAction { Error, Overwrite, Rename };
 
