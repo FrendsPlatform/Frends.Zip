@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Frends
+namespace Frends.Zip.CreateArchive
 {
     static class Extensions
     {

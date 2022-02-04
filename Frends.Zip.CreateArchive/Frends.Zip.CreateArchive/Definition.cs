@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 #pragma warning disable 1591
 
-namespace Frends
+namespace Frends.Zip.CreateArchive
 {
     public enum FileExistAction { Error, Append, Overwrite, Rename};
     public enum SourceFilesType { PathAndFileMask, FileList }
