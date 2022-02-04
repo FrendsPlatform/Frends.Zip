@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading;
 
-namespace Frends
+namespace Frends.Zip.ExtractArchive
 {
     static class Extensions
     {

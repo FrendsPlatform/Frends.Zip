@@ -1,7 +1,7 @@
 ﻿{
 	"Tasks": [
 		{
-			"TaskMethod": "Frends.Zip.ExtractArchive"
+			"TaskMethod": "Frends.Zip.ExtractArchive.Zip.ExtractArchive"
 		}
 	]
 }
