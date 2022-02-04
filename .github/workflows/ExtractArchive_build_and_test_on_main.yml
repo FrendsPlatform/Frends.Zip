@@ -1,4 +1,4 @@
-name: build_and_test_on_main.yml
+name: ExtractArchive_build_main
 
 on:
   push:

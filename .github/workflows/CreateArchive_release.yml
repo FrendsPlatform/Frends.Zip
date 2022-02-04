@@ -1,4 +1,4 @@
-name: release.yml
+name: CreateArchive_release
 
 on:
   workflow_dispatch:
