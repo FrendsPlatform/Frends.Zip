@@ -11,8 +11,8 @@
     <PackageProjectUrl></PackageProjectUrl>
     <IncludeSource>true</IncludeSource>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>1.0.2</Version>
-		<Description>Task for extracting ZIP archives. [Documentation](https://github.com/FrendsPlatform/Frends.Zip/Frends.Zip.ExtractArchive)</Description>
+    <Version>1.0.3</Version>
+		<Description>Task for extracting ZIP archives.</Description>
 		<PackageProjectUrl>https://frends.com/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/FrendsPlatform/Frends.Zip/Frends.Zip.ExtractArchive</RepositoryUrl>
   </PropertyGroup>

@@ -11,7 +11,7 @@ namespace Frends.Zip.ExtractArchive
     {
         /// <summary>
         /// A Frends task for extracting zip archives.
-        /// See https://github.com/FrendsPlatform/Frends.Zip/Frends.Zip.ExtractArchive
+        /// [Documentation](https://github.com/FrendsPlatform/Frends.Zip/Frends.Zip.ExtractArchive).
         /// </summary>
         /// <param name="input">Input properties</param>
         /// <param name="options">Options</param>
