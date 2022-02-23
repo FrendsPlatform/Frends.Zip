@@ -1,16 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFrameworks>netstandard2.0;net6</TargetFrameworks>
-    
-    <authors>HiQ Finland</authors>
-    <copyright>HiQ Finland</copyright>
+	  <TargetFramework>net6.0</TargetFramework>
+    <authors>Frends</authors>
+    <copyright>Frends</copyright>
+		<Company>Frends</Company>
+		<Product>Frends</Product>
+		<PackageTags>frends zip archive</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/FrendsPlatform/Frends.Zip/Frends.Zip.CreateArchive</PackageProjectUrl>
+    <PackageProjectUrl></PackageProjectUrl>
     <IncludeSource>true</IncludeSource>
-    <PackageTags>Frends</PackageTags>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Version>1.0.0</Version>
+		<Description>Task for creating ZIP archives. [Documentation](https://github.com/FrendsPlatform/Frends.Zip/Frends.Zip.CreateArchive)</Description>
+		<PackageProjectUrl>https://frends.com/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/FrendsPlatform/Frends.Zip/Frends.Zip.CreateArchive</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
