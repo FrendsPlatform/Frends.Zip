@@ -4,8 +4,8 @@ Frends tasks for ZIP archive handling.
 
 # Tasks
 
-- [Frends.ZIP.CreateArchive](Frends.ZIP.CreateArchive/README.md)
-- [Frends.ZIP.ExtractArchive](Frends.ZIP.ExtractArchive/README.md)
+- [Frends.ZIP.CreateArchive](Frends.Zip.CreateArchive/README.md)
+- [Frends.ZIP.ExtractArchive](Frends.Zip.ExtractArchive/README.md)
 
 # Contributing
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
