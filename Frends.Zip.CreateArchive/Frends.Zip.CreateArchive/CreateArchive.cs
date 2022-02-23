@@ -14,7 +14,7 @@ namespace Frends.Zip.CreateArchive
     {
         /// <summary>
         /// Create zip archive.
-        /// See https://github.com/FrendsPlatform/Frends.Zip/Frends.Zip.CreateArchive.
+        /// [Documentation](https://github.com/FrendsPlatform/Frends.Zip/Frends.Zip.CreateArchive).
         /// </summary>
         /// <returns>Object {string FileName, string FilePath, int FileCount, List&lt;string&gt; ArchivedFiles}</returns>
         public static Output CreateArchive(
