@@ -3,6 +3,7 @@ FRENDS tasks for creating ZIP archive.
 test
 test
 test
+test
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) 
 [![Build](https://github.com/FrendsPlatform/Frends.Zip/actions/workflows/CreateArchive_build_and_test_on_main.yml/badge.svg)](https://github.com/FrendsPlatform/Frends.Zip/actions)
 ![MyGet](https://img.shields.io/myget/frends-tasks/v/Frends.Zip.CreateArchive)
