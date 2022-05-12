@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    uses: FrendsPlatform/FrendsTasks/.github/workflows/build_test.yml@main
+    uses: FrendsPlatform/FrendsTasks/.github/workflows/linux_build_test.yml@ISSUE-9
     with:
       workdir: Frends.Zip.CreateArchive
     secrets:
