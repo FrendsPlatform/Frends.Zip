@@ -16,9 +16,9 @@ public class Zip
 {
     /// <summary>
     /// Create zip file from selected files and/or folders. Created zip file content can be flatten and file can be protected with password.
-    /// [Documentation](https://github.com/FrendsPlatform/Frends.Zip/Frends.Zip.CreateArchive).
+    /// [Documentation](https://tasks.frends.com/tasks/frends-tasks/Frends.Zip.CreateArchive)
     /// </summary>
-    /// <returns>Object {string FileName, string FilePath, int FileCount, List&lt;string&gt; ArchivedFiles}</returns>
+    /// <returns>Object {string FilePath, int FileCount, List&lt;string&gt; ArchivedFiles}</returns>
     public static Result CreateArchive([PropertyTab] SourceProperties source, [PropertyTab] DestinationProperties destinationZip, [PropertyTab] Options options, CancellationToken cancellationToken)
     {
         // Validate that source and destination folders exist.
