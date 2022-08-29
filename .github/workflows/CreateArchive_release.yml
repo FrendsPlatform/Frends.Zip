@@ -12,4 +12,3 @@ jobs:
       workdir: Frends.Zip.CreateArchive
     secrets:
       feed_api_key: ${{ secrets.TASKS_FEED_API_KEY }}
-      

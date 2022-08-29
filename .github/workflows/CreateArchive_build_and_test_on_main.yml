@@ -17,4 +17,3 @@ jobs:
       workdir: Frends.Zip.CreateArchive
     secrets:
       badge_service_api_key: ${{ secrets.BADGE_SERVICE_API_KEY }}
-      
