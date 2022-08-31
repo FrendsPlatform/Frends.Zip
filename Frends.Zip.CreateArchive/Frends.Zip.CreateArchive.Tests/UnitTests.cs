@@ -253,7 +253,7 @@ public class ZipTests
         var result2 = ExecuteCreateArchive();
         var result3 = ExecuteCreateArchive();
         var zipFiles = Directory.GetFiles(_destination.Directory, "*.zip");
-        Assert.AreEqual(3, zipFiles.Count());
+        Assert.AreEqual(3, zipFiles.Length);
         Assert.AreEqual("zip_test.zip", Path.GetFileName(result1.Path));
         Assert.AreEqual("zip_test_(1).zip", Path.GetFileName(result2.Path));
         Assert.AreEqual("zip_test_(2).zip", Path.GetFileName(result3.Path));
@@ -287,6 +287,6 @@ public class ZipTests
 
         Assert.AreEqual(_zipFileName, Path.GetFileName(result.Path));
         Assert.IsTrue(Directory.Exists(extractPath));
-        Assert.AreEqual(result.FileCount, Directory.GetFiles(extractPath, "*").Count());
+        Assert.AreEqual(result.FileCount, Directory.GetFiles(extractPath, "*").Length);
     }
 }
