@@ -9,7 +9,7 @@ public class UnzipOutput
     /// <summary>
     /// a List-object of extracted files.
     /// </summary>
-    /// <example>C:\temp\samplefile.txt"</example>
+    /// <example>"ExtractedFiles": ["C:\\temp\\sample.txt",	"C:\\temp\\sample2.txt"]</example>
     public List<string> ExtractedFiles { get; set; }
 
     internal UnzipOutput()
