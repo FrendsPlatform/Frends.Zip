@@ -5,6 +5,7 @@ using System.Threading;
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 using Frends.Zip.CreateArchive.Definitions;
 
 namespace Frends.Zip.CreateArchive;
@@ -32,6 +33,7 @@ public class Zip
             throw new DirectoryNotFoundException($"Destination directory {destinationZip.Directory} does not exist.");
 
         var sourceFiles = new List<string>();
+        var encoding = GetEncoding(options.Encoding, options.EncodingInString, options.EnableBom);
 
         // Populate source files list according to input type.
         switch (source.SourceType)
@@ -74,7 +76,7 @@ public class Zip
 
 
         // Either create a new zip file or open existing one if Append was selected.
-        using (var zipFile = (destinationZipExists && options.DestinationFileExistsAction == FileExistAction.Append) ? ZipFile.Read(destinationZipFileName) : new ZipFile())
+        using (var zipFile = (destinationZipExists && options.DestinationFileExistsAction == FileExistAction.Append) ? ZipFile.Read(destinationZipFileName) : new ZipFile(encoding))
         {
             // Set 'UseZip64WhenSaving' - needed for large zip files.
             zipFile.UseZip64WhenSaving = options.UseZip64.ConvertEnum<Zip64Option>();
@@ -101,6 +103,25 @@ public class Zip
             foreach (var fullPath in sourceFiles) if (source.RemoveZippedFiles) File.Delete(fullPath);
 
             return new Result(destinationZipFileName, zipFile.Count, zipFile.EntryFileNames.ToList());
+        }
+    }
+
+    internal static Encoding GetEncoding(FileEncoding encoding, string encodingString, bool enableBom)
+    {
+        switch (encoding)
+        {
+            case FileEncoding.UTF8:
+                return enableBom ? new UTF8Encoding(true) : new UTF8Encoding(false);
+            case FileEncoding.ASCII:
+                return new ASCIIEncoding();
+            case FileEncoding.ANSI:
+                return Encoding.Default;
+            case FileEncoding.WINDOWS1252:
+                return CodePagesEncodingProvider.Instance.GetEncoding("windows-1252");
+            case FileEncoding.Other:
+                return CodePagesEncodingProvider.Instance.GetEncoding(encodingString);
+            default:
+                throw new ArgumentOutOfRangeException($"Unknown Encoding type: '{encoding}'.");
         }
     }
 
