@@ -233,7 +233,7 @@ public class ZipTests
         _options.DestinationFileExistsAction = FileExistAction.Error;
         ExecuteCreateArchive();
         var result = Assert.Throws<Exception>(() => ExecuteCreateArchive());
-        Assert.IsTrue(result.Message.Equals($"Destination file {Path.Combine(_destination.Directory, _destination.FileName)} already exists."));
+        Assert.AreEqual($"Destination file {Path.Combine(_destination.Directory, _destination.FileName)} already exists.", result.Message);
     }
 
     [Test]
@@ -287,6 +287,6 @@ public class ZipTests
 
         Assert.AreEqual(_zipFileName, Path.GetFileName(result.Path));
         Assert.IsTrue(Directory.Exists(extractPath));
-        Assert.AreEqual(result.FileCount, Directory.GetFiles(extractPath, "*").Length);
+        Assert.AreEqual(Directory.GetFiles(extractPath, "*").Length, result.FileCount);
     }
 }

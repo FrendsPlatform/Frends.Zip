@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.0] - 2022-11-27
+## [1.1.0] - 2023-11-27
 ### Added
 - [Breaking] Added Encoding for file and directory names.
 
