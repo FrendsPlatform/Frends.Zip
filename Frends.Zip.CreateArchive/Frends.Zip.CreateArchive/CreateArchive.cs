@@ -76,53 +76,47 @@ public class Zip
 
 
         // Either create a new zip file or open existing one if Append was selected.
-        using (var zipFile = (destinationZipExists && options.DestinationFileExistsAction == FileExistAction.Append) ? ZipFile.Read(destinationZipFileName) : new ZipFile(encoding))
+        using var zipFile = (destinationZipExists && options.DestinationFileExistsAction == FileExistAction.Append) ? ZipFile.Read(destinationZipFileName) : new ZipFile(encoding);
+
+        // Set 'UseZip64WhenSaving' - needed for large zip files.
+        zipFile.UseZip64WhenSaving = options.UseZip64.ConvertEnum<Zip64Option>();
+
+        // If password is given, add it to archive.
+        if (!string.IsNullOrWhiteSpace(destinationZip.Password)) zipFile.Password = destinationZip.Password;
+
+        foreach (var fullPath in sourceFiles)
         {
-            // Set 'UseZip64WhenSaving' - needed for large zip files.
-            zipFile.UseZip64WhenSaving = options.UseZip64.ConvertEnum<Zip64Option>();
+            // Check if cancellation is requested.
+            cancellationToken.ThrowIfCancellationRequested();
 
-            // If password is given, add it to archive.
-            if (!string.IsNullOrWhiteSpace(destinationZip.Password)) zipFile.Password = destinationZip.Password;
+            // FlattenFolders = true: add all files to zip root, otherwise adda folders to zip. 
+            // Only available when source type is path and filemask
+            var pathInArchive = (source.FlattenFolders || source.SourceType == SourceFilesType.FileList) ? "" : fullPath.GetRelativePath(source.Directory);
 
-            foreach (var fullPath in sourceFiles)
-            {
-                // Check if cancellation is requested.
-                cancellationToken.ThrowIfCancellationRequested();
-
-                // FlattenFolders = true: add all files to zip root, otherwise adda folders to zip. 
-                // Only available when source type is path and filemask
-                var pathInArchive = (source.FlattenFolders || source.SourceType == SourceFilesType.FileList) ? "" : fullPath.GetRelativePath(source.Directory);
-
-                AddFileToZip(zipFile, fullPath, pathInArchive, destinationZip.RenameDuplicateFiles);
-            }
-
-            // Save zip (overwites existing file).
-            zipFile.Save(destinationZipFileName);
-
-            // Remove source files?
-            foreach (var fullPath in sourceFiles) if (source.RemoveZippedFiles) File.Delete(fullPath);
-
-            return new Result(destinationZipFileName, zipFile.Count, zipFile.EntryFileNames.ToList());
+            AddFileToZip(zipFile, fullPath, pathInArchive, destinationZip.RenameDuplicateFiles);
         }
+
+        // Save zip (overwites existing file).
+        zipFile.Save(destinationZipFileName);
+
+        // Remove source files?
+        foreach (var fullPath in sourceFiles) if (source.RemoveZippedFiles) File.Delete(fullPath);
+
+        return new Result(destinationZipFileName, zipFile.Count, zipFile.EntryFileNames.ToList());
+
     }
 
     internal static Encoding GetEncoding(FileEncoding encoding, string encodingString, bool enableBom)
     {
-        switch (encoding)
+        return encoding switch
         {
-            case FileEncoding.UTF8:
-                return enableBom ? new UTF8Encoding(true) : new UTF8Encoding(false);
-            case FileEncoding.ASCII:
-                return new ASCIIEncoding();
-            case FileEncoding.ANSI:
-                return Encoding.Default;
-            case FileEncoding.WINDOWS1252:
-                return CodePagesEncodingProvider.Instance.GetEncoding("windows-1252");
-            case FileEncoding.Other:
-                return CodePagesEncodingProvider.Instance.GetEncoding(encodingString);
-            default:
-                throw new ArgumentOutOfRangeException($"Unknown Encoding type: '{encoding}'.");
-        }
+            FileEncoding.UTF8 => enableBom ? new UTF8Encoding(true) : new UTF8Encoding(false),
+            FileEncoding.ASCII => new ASCIIEncoding(),
+            FileEncoding.ANSI => Encoding.Default,
+            FileEncoding.WINDOWS1252 => CodePagesEncodingProvider.Instance.GetEncoding("windows-1252"),
+            FileEncoding.Other => CodePagesEncodingProvider.Instance.GetEncoding(encodingString),
+            _ => throw new ArgumentOutOfRangeException($"Unknown Encoding type: '{encoding}'."),
+        };
     }
 
     private static void AddFileToZip(ZipFile zipFile, string fullPath, string pathInArchive, bool renameDublicateFile)
