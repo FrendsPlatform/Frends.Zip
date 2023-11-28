@@ -11,7 +11,7 @@
 		<PackageProjectUrl></PackageProjectUrl>
 		<IncludeSource>true</IncludeSource>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<Version>1.0.0</Version>
+		<Version>1.1.0</Version>
 		<Description>Task for creating ZIP archives.</Description>
 		<PackageProjectUrl>https://frends.com/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/FrendsPlatform/Frends.Zip/Frends.Zip</RepositoryUrl>

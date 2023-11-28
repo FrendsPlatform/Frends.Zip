@@ -68,7 +68,7 @@ public class ZipTests
 
         Assert.AreEqual(_zipFileName, Path.GetFileName(result.Path));
         Assert.AreEqual(2, result.FileCount);
-        Assert.That(File.Exists(Path.Combine(_destination.Directory, _zipFileName)));
+        Assert.IsTrue(File.Exists(Path.Combine(_destination.Directory, _zipFileName)));
     }
 
     [Test]
@@ -119,7 +119,7 @@ public class ZipTests
         _options.ThrowErrorIfNoFilesFound = false;
         var result = ExecuteCreateArchive();
         Assert.AreEqual(0, result.FileCount);
-        Assert.That(!File.Exists(Path.Combine(_destination.Directory, _zipFileName)));
+        Assert.IsFalse(File.Exists(Path.Combine(_destination.Directory, _zipFileName)));
     }
 
     [Test]
@@ -146,7 +146,7 @@ public class ZipTests
         var result = ExecuteCreateArchive();
         Assert.AreEqual(_zipFileName, Path.GetFileName(result.Path));
         Assert.AreEqual(2, result.FileCount);
-        Assert.That(File.Exists(Path.Combine(_destination.Directory, _zipFileName)));
+        Assert.IsTrue(File.Exists(Path.Combine(_destination.Directory, _zipFileName)));
     }
 
 
@@ -157,7 +157,7 @@ public class ZipTests
         var result = ExecuteCreateArchive();
         Assert.AreEqual(_zipFileName, Path.GetFileName(result.Path));
         Assert.AreEqual(4, result.FileCount);
-        Assert.That(File.Exists(Path.Combine(_destination.Directory, _zipFileName)));
+        Assert.IsTrue(File.Exists(Path.Combine(_destination.Directory, _zipFileName)));
         var fileNamesWithSubDir = result.ArchivedFiles.Where(s => s.Contains(_subDir)).Count();
         Assert.AreEqual(2, fileNamesWithSubDir);
     }
@@ -170,7 +170,7 @@ public class ZipTests
         var result = ExecuteCreateArchive();
         Assert.AreEqual(_zipFileName, Path.GetFileName(result.Path));
         Assert.AreEqual(4, result.FileCount);
-        var subDirIsPresent = result.ArchivedFiles.Where(s => s.Contains(_subDir)).Count() > 0;
+        var subDirIsPresent = result.ArchivedFiles.Where(s => s.Contains(_subDir)).Any();
         Assert.IsFalse(subDirIsPresent);
     }
 
@@ -233,7 +233,7 @@ public class ZipTests
         _options.DestinationFileExistsAction = FileExistAction.Error;
         ExecuteCreateArchive();
         var result = Assert.Throws<Exception>(() => ExecuteCreateArchive());
-        Assert.IsTrue(result.Message.Equals($"Destination file {Path.Combine(_destination.Directory, _destination.FileName)} already exists."));
+        Assert.AreEqual($"Destination file {Path.Combine(_destination.Directory, _destination.FileName)} already exists.", result.Message);
     }
 
     [Test]
@@ -242,7 +242,7 @@ public class ZipTests
         _options.DestinationFileExistsAction = FileExistAction.Overwrite;
         ExecuteCreateArchive();
         ExecuteCreateArchive();
-        Assert.AreEqual(1, Directory.GetFiles(_destination.Directory, "*.zip").Count());
+        Assert.AreEqual(1, Directory.GetFiles(_destination.Directory, "*.zip").Length);
     }
 
     [Test]
@@ -287,6 +287,6 @@ public class ZipTests
 
         Assert.AreEqual(_zipFileName, Path.GetFileName(result.Path));
         Assert.IsTrue(Directory.Exists(extractPath));
-        Assert.AreEqual(result.FileCount, Directory.GetFiles(extractPath, "*").Length);
+        Assert.AreEqual(Directory.GetFiles(extractPath, "*").Length, result.FileCount);
     }
 }

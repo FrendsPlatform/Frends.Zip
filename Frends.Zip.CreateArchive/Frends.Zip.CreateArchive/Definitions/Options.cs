@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Frends.Zip.CreateArchive.Definitions;
 
@@ -15,6 +16,26 @@ public class Options
     /// <example>AsNecessary</example>
     [DefaultValue(UseZip64Option.AsNecessary)]
     public UseZip64Option UseZip64 { get; set; }
+
+    /// <summary>
+    /// Encoding for file and directory names.
+    /// </summary>
+    /// <example>Encoding.UTF8</example>
+    public FileEncoding Encoding { get; set; }
+
+    /// <summary>
+    /// Additional option for UTF-8 encoding to enable bom.
+    /// </summary>
+    /// <example>true</example>
+    [UIHint(nameof(Encoding), "", FileEncoding.UTF8)]
+    public bool EnableBom { get; set; }
+
+    /// <summary>
+    /// File encoding to be used. A partial list of possible encodings: https://en.wikipedia.org/wiki/Windows_code_page#List.
+    /// </summary>
+    /// <example>utf-8</example>
+    [UIHint(nameof(Encoding), "", FileEncoding.Other)]
+    public string EncodingInString { get; set; }
 
     /// <summary>
     /// Throw error if no source files are found. Otherwise returns object with FileCount: 0.
