@@ -50,10 +50,9 @@ public class Zip
                         if (File.Exists(Path.Combine(input.DestinationDirectory, z.FileName)))
                         {
                             // Find a filename that does not exist. 
-                            var FullPath = Extensions.GetNewFilename(Path.Combine(input.DestinationDirectory, z.FileName),  cancellationToken);
-                            path = FullPath;
+                            path = Extensions.GetNewFilename(Path.Combine(input.DestinationDirectory, z.FileName), cancellationToken);
 
-                            using var fs = new FileStream(FullPath, FileMode.Create, FileAccess.Write);
+                            using var fs = new FileStream(path, FileMode.Create, FileAccess.Write);
                             z.Extract(fs);
                         }
                         else
@@ -65,7 +64,7 @@ public class Zip
             }
         }
 
-        if (options.DeletetZipFileAfterExtract)
+        if (options.DeleteZipFileAfterExtract)
             File.Delete(input.SourceFile);
 
         return output;

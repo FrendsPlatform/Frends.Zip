@@ -22,9 +22,10 @@ public class UnzipOptions
     public bool CreateDestinationDirectory { get; set; }
 
     /// <summary>
-    /// Deletes the zip file after extraction.
+    /// If set to true, the source ZIP file will be deleted after successful extraction.
     /// </summary>
     /// <example>true</example>
     [DefaultValue(false)]
-    public bool DeletetZipFileAfterExtract { get; set; }
+    [DisplayName("Delete ZIP file after extraction")]
+    public bool DeleteZipFileAfterExtract { get; set; }
 }

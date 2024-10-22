@@ -12,7 +12,7 @@ public class UnzipInputProperties
     /// Full path to the source file.
     /// </summary>
     /// <example>c:\example\file.zip</example>
-    [DisplayFormat(DataFormatString="Text")]
+    [DisplayFormat(DataFormatString = "Text")]
     public string SourceFile { get; set; }
 
     /// <summary>
@@ -26,6 +26,6 @@ public class UnzipInputProperties
     /// Destination directory.
     /// </summary>
     /// <example>C:\example</example>
-    [DisplayFormat(DataFormatString ="Text")]
+    [DisplayFormat(DataFormatString = "Text")]
     public string DestinationDirectory { get; set; }
 }

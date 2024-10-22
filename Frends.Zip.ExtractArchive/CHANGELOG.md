@@ -4,7 +4,7 @@
 ### Fixed
 - Fixed issue with rename option writing the extracted files to wrong directory.
 ### Added
-- Added DeletetZipFileAfterExtract option to enable the deletion of the source file.
+- DeleteZipFileAfterExtract option to enable the deletion of the source file.
 
 ## [1.0.3] - 2022-02-23
 ### Changed

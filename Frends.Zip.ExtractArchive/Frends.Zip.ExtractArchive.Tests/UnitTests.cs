@@ -11,7 +11,7 @@ namespace Frends.Zip.ExtractArchive.Tests;
 [TestFixture]
 public class UnZipTests
 {
-    private readonly string[] fileNames = 
+    private readonly string[] fileNames =
     {
         "logo1.png",
         "logo2.png",
@@ -153,7 +153,7 @@ public class UnZipTests
         Assert.True(lines.Contains("First file") && lines.Contains("Second file") && lines.Contains("Third file"));
 
         sp.SourceFile = Path.Combine(inputPath, "testzip2.zip");
-        output = Zip.ExtractArchive(sp,  opt, new CancellationToken());
+        output = Zip.ExtractArchive(sp, opt, new CancellationToken());
         var lines2 = Directory.EnumerateFiles(sp.DestinationDirectory, "*", SearchOption.AllDirectories).Select(x => File.ReadLines(x).First()).ToList();
         Assert.False(lines2.Contains("First file") && lines2.Contains("Second file") && lines2.Contains("Third file"));
         Assert.True(lines2.Contains("Fourth file") && lines2.Contains("Fifth file") && lines2.Contains("Sixth file"));
@@ -170,9 +170,9 @@ public class UnZipTests
         sp.DestinationDirectory = outputPath;
 
         // Extract files to TestOut, so that there are existing files.
-        Zip.ExtractArchive(sp,  opt, new CancellationToken());
+        Zip.ExtractArchive(sp, opt, new CancellationToken());
 
-        var output = Zip.ExtractArchive(sp,  opt, new CancellationToken());
+        var output = Zip.ExtractArchive(sp, opt, new CancellationToken());
 
         // Create filenames to test against.
         outputFiles = new List<string>();
@@ -189,7 +189,7 @@ public class UnZipTests
     {
         File.Copy(Path.Combine(inputPath, "HiQLogos.zip"), Path.Combine(inputPath, "HiQLogos(1).zip"));
         sp.SourceFile = Path.Combine(inputPath, "HiQLogos(1).zip");
-        opt.DeletetZipFileAfterExtract = true;
+        opt.DeleteZipFileAfterExtract = true;
 
         opt.DestinationFileExistsAction = UnzipFileExistAction.Error;
         opt.CreateDestinationDirectory = true;
