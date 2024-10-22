@@ -21,17 +21,6 @@ public class UnZipTests
         Path.Combine("folder", "folder", "folder", "logo2.png"),
         Path.Combine("folder", "folder", "folder", "folder", "logo1.png"),
     };
-    // Used for testing the rename-option.
-    private readonly string[] renamedFilenames = 
-    {
-        "logo1(0).png",
-        "logo2(0).png",
-        Path.Combine("folder", "logo1(0).png"),
-        Path.Combine("folder", "logo2(0).png"),
-        Path.Combine("folder", "folder", "folder", "logo1(0).png"),
-        Path.Combine("folder", "folder", "folder", "logo2(0).png"),
-        Path.Combine("folder", "folder", "folder", "folder", "logo1(0).png")
-    };
 
     // Paths to TestIn and TestOut.
     private readonly string inputPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "../../..", "TestData", "TestIn");
@@ -61,7 +50,7 @@ public class UnZipTests
         sp.SourceFile = Path.Combine(inputPath, "doesnotexist.zip");
         opt.DestinationFileExistsAction = UnzipFileExistAction.Overwrite;
         sp.DestinationDirectory = outputPath;
-        Assert.That(() => Zip.ExtractArchive(sp, opt, new CancellationToken()), Throws.TypeOf<FileNotFoundException>());
+        Assert.Throws<FileNotFoundException>(() => Zip.ExtractArchive(sp, opt, new CancellationToken()));
     }
 
     [Test]
@@ -72,7 +61,7 @@ public class UnZipTests
         opt.DestinationFileExistsAction = UnzipFileExistAction.Error;
         opt.CreateDestinationDirectory = false;
         sp.DestinationDirectory = Path.Combine(outputPath, "doesnot", "exist");
-        Assert.That(() => Zip.ExtractArchive(sp, opt, new CancellationToken()), Throws.TypeOf<DirectoryNotFoundException>());
+        Assert.Throws<DirectoryNotFoundException>(() => Zip.ExtractArchive(sp, opt, new CancellationToken()));
     }
 
     [Test]
@@ -118,7 +107,7 @@ public class UnZipTests
         opt.CreateDestinationDirectory = true;
         sp.DestinationDirectory = Path.Combine(outputPath, "new_directory");
 
-        Assert.That(() => Zip.ExtractArchive(sp, opt, new CancellationToken()), Throws.TypeOf<BadPasswordException>());
+        Assert.Throws<BadPasswordException>(() => Zip.ExtractArchive(sp, opt, new CancellationToken()));
     }
 
     [Test]
@@ -140,7 +129,7 @@ public class UnZipTests
         // Unzip files to TestOut, so that there are existing files.
         Zip.ExtractArchive(sp, opt2, new CancellationToken());
 
-        Assert.That(() => Zip.ExtractArchive(sp, opt, new CancellationToken()), Throws.TypeOf<ZipException>());
+        Assert.Throws<ZipException>(() => Zip.ExtractArchive(sp, opt, new CancellationToken()));
     }
 
     [Test]
@@ -182,14 +171,33 @@ public class UnZipTests
 
         // Extract files to TestOut, so that there are existing files.
         Zip.ExtractArchive(sp,  opt, new CancellationToken());
+
         var output = Zip.ExtractArchive(sp,  opt, new CancellationToken());
 
         // Create filenames to test against.
         outputFiles = new List<string>();
-        renamedFilenames.ToList().ForEach(x => outputFiles.Add(Path.Combine(sp.DestinationDirectory, x)));
+        output.ExtractedFiles.ForEach(x => outputFiles.Add(x));
 
-        foreach (var s in outputFiles) Assert.True(File.Exists(s));
+        foreach (var s in outputFiles)
+            Assert.True(File.Exists(s));
 
         Assert.AreEqual(output.ExtractedFiles.Count, 7);
+    }
+
+    [Test]
+    public void DeleteSourceFile()
+    {
+        File.Copy(Path.Combine(inputPath, "HiQLogos.zip"), Path.Combine(inputPath, "HiQLogos(1).zip"));
+        sp.SourceFile = Path.Combine(inputPath, "HiQLogos(1).zip");
+        opt.DeletetZipFileAfterExtract = true;
+
+        opt.DestinationFileExistsAction = UnzipFileExistAction.Error;
+        opt.CreateDestinationDirectory = true;
+
+        sp.DestinationDirectory = outputPath;
+
+        Zip.ExtractArchive(sp, opt, new CancellationToken());
+
+        Assert.IsFalse(File.Exists(sp.SourceFile));
     }
 }

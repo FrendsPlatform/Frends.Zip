@@ -20,4 +20,11 @@ public class UnzipOptions
     [DefaultValue(false)]
     [DisplayName(@"Create destination directory")]
     public bool CreateDestinationDirectory { get; set; }
+
+    /// <summary>
+    /// Deletes the zip file after extraction.
+    /// </summary>
+    /// <example>true</example>
+    [DefaultValue(false)]
+    public bool DeletetZipFileAfterExtract { get; set; }
 }

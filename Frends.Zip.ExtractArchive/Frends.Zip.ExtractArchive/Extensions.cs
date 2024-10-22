@@ -7,15 +7,15 @@ namespace Frends.Zip.ExtractArchive;
 /// </summary>
 static class Extensions
 {
-    internal static string GetNewFilename(string fullPath, string name, CancellationToken cancellationToken)
+    internal static string GetNewFilename(string path, CancellationToken cancellationToken)
     {
-        var index = 0;
+        var index = 1;
         string newPath;
         do
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var new_Filename = $"{Path.GetFileNameWithoutExtension(name)}({index}){Path.GetExtension(name)}";
-            newPath = Path.Combine(Path.GetDirectoryName(fullPath), new_Filename);
+            var new_Filename = $"{Path.GetFileNameWithoutExtension(path)}({index}){Path.GetExtension(path)}";
+            newPath = Path.Combine(Path.GetDirectoryName(path), new_Filename);
             index++;
         } while (File.Exists(newPath));
         return newPath;
