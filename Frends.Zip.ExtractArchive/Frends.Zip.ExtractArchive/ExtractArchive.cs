@@ -76,7 +76,6 @@ public class Zip
                 throw new ArgumentException($"Extraction was completed but an exception was thrown when trying to delete the source file: {ex.Message}");
             }
         }
-            
 
         return output;
     }
