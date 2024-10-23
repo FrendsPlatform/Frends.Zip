@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Ionic.Zip;
 using System.Threading;
 using System.ComponentModel;
@@ -50,16 +51,32 @@ public class Zip
                         if (File.Exists(Path.Combine(input.DestinationDirectory, z.FileName)))
                         {
                             // Find a filename that does not exist. 
-                            var FullPath = Extensions.GetNewFilename(Path.Combine(Path.GetDirectoryName(input.DestinationDirectory), z.FileName), z.FileName, cancellationToken);
-                            path = FullPath;
+                            path = Extensions.GetNewFilename(Path.Combine(input.DestinationDirectory, z.FileName), cancellationToken);
 
-                            using var fs = new FileStream(FullPath, FileMode.Create, FileAccess.Write); z.Extract(fs);
+                            using var fs = new FileStream(path, FileMode.Create, FileAccess.Write);
+                            z.Extract(fs);
                         }
-                        else z.Extract(input.DestinationDirectory);
+                        else
+                        {
+                            z.Extract(input.DestinationDirectory);
+                        }
                     }
                     break;
             }
         }
+
+        if (options.DeleteZipFileAfterExtract)
+        {
+            try
+            {
+                File.Delete(input.SourceFile);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException($"Extraction was completed but an exception was thrown when trying to delete the source file: {ex.Message}");
+            }
+        }
+
         return output;
     }
 

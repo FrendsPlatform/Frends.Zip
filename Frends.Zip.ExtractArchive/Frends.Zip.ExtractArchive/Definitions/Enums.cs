@@ -3,11 +3,11 @@
 /// <summary>
 /// Unzip file exist actions.
 /// </summary>
-public enum UnzipFileExistAction 
+public enum UnzipFileExistAction
 {
 #pragma warning disable CS1591 // self explanatory.
     Error,
-    Overwrite, 
+    Overwrite,
     Rename
 #pragma warning restore CS1591 // self explanatory.
 };
