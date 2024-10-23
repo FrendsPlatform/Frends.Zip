@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Ionic.Zip;
 using System.Threading;
 using System.ComponentModel;
@@ -65,7 +66,17 @@ public class Zip
         }
 
         if (options.DeleteZipFileAfterExtract)
-            File.Delete(input.SourceFile);
+        {
+            try
+            {
+                File.Delete(input.SourceFile);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException($"Extraction was completed but an exception was thrown when trying to delete the source file: {ex.Message}");
+            }
+        }
+            
 
         return output;
     }
