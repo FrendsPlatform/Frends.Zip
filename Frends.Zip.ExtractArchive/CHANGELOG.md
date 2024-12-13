@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.1] - 2024-12-13
+### Changed
+- Drop DotNetZip in favour of ProDotNetZip because of security reasons
+
 ## [1.1.0] - 2024-10-22
 ### Fixed
 - Fixed issue with rename option writing the extracted files to wrong directory.
