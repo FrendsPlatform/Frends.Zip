@@ -8,10 +8,9 @@
 		<Product>Frends</Product>
 		<PackageTags>frends zip archive</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl></PackageProjectUrl>
 		<IncludeSource>true</IncludeSource>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<Version>1.1.1</Version>
+		<Version>1.2.0</Version>
 		<Description>Task for creating ZIP archives.</Description>
 		<PackageProjectUrl>https://frends.com/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/FrendsPlatform/Frends.Zip/Frends.Zip</RepositoryUrl>
